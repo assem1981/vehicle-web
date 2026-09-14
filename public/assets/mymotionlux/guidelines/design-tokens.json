@@ -1,0 +1,30 @@
+{
+  "brand": "MyMotionLux",
+  "tagline": "DRIVE \u2022 RENT \u2022 EXPLORE",
+  "primary": "#0B1F35",
+  "accent": "#F5B301",
+  "background": "#E5E7EB",
+  "text": "#485568",
+  "recommended_fonts": {
+    "web": [
+      "Inter",
+      "Arial",
+      "sans-serif"
+    ],
+    "mobile": [
+      "Inter",
+      "sans-serif"
+    ]
+  },
+  "border_radius": {
+    "small": 8,
+    "medium": 12,
+    "large": 20
+  },
+  "asset_usage": {
+    "primary_logo": "brand/logo/logo-primary-white.png",
+    "app_icon": "brand/app-icons/mymotionlux-icon-1024.png",
+    "web_hero": "brand/banners/hero-desktop-1920x845.jpg",
+    "mobile_hero": "brand/banners/hero-mobile-1080x506.jpg"
+  }
+}

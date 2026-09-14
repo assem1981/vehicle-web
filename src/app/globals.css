@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #0B1F35;
+    --bg-card: rgba(15, 34, 57, 0.85);
+    --bg-card-hover: rgba(22, 48, 80, 0.95);
+    --border-card: rgba(245, 179, 1, 0.15);
+    --accent-gold: #F5B301;
+    --accent-gold-dark: #D99B00;
+    --accent-cyan: #06b6d4;
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #94a3b8;
+    --brand-muted: #485568;
+  }
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(245, 179, 1, 0.4);
+  box-shadow: 0 15px 35px -5px rgba(245, 179, 1, 0.2);
+}
+
+/* Gradient Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #F5B301 0%, #D99B00 100%);
+  color: #0B1F35;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px 0 rgba(245, 179, 1, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(245, 179, 1, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(245, 179, 1, 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1F35;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c334d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F5B301;
+}
+
+/* Dark Leaflet Map Filter */
+.dark-map-tiles {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
+
+/* Leaflet Price Pin Badge */
+.map-price-badge {
+  background: rgba(15, 23, 42, 0.95);
+  color: #F5B301;
+  border: 1px solid rgba(245, 179, 1, 0.5);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-price-badge:hover {
+  transform: scale(1.1);
+}
+
+/* Leaflet Active Price Pin Badge */
+.map-price-badge-active {
+  background: #F5B301 !important;
+  color: #0B1F35 !important;
+  border: 2px solid #ffffff !important;
+  padding: 5px 12px !important;
+  border-radius: 9999px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 0 20px rgba(245, 179, 1, 0.8), 0 4px 14px rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  transform: scale(1.15) !important;
+  z-index: 999 !important;
+}
+
+/* Custom Dark Leaflet Popup Overrides */
+.leaflet-popup-content-wrapper {
+  background: rgba(11, 31, 53, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(245, 179, 1, 0.3) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7) !important;
+  padding: 2px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(11, 31, 53, 0.95) !important;
+  border: 1px solid rgba(245, 179, 1, 0.3) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 6px !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #F5B301 !important;
+}
