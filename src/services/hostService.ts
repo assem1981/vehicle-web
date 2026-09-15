@@ -57,7 +57,25 @@ export interface HostEarningsSummary {
   }[];
 }
 
+export interface HostProfile {
+  id: number;
+  userId: number;
+  firstName?: string;
+  lastName?: string;
+  bio?: string;
+  payoutAccountDetails?: string;
+  averageRating?: number;
+  totalTripsCount?: number;
+  totalEarnings?: number;
+  superHost?: boolean;
+}
+
 export const hostService = {
+  getHostById: async (id: number): Promise<HostProfile | null> => {
+    const response = await api.get(`/api/hosts/${id}`);
+    return response.data;
+  },
+
   getVerificationStatus: async () => {
     const response = await api.get('/api/verification/me');
     return response.data;

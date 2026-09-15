@@ -176,7 +176,7 @@ export default function VehicleDetailPage() {
               </div>
             </div>
 
-            <Link href="/messages" className="btn-secondary text-xs py-2 px-3">
+            <Link href={`/messages?hostId=${vehicle.hostId || 1}&vehicleId=${vehicle.id}`} className="btn-secondary text-xs py-2 px-3">
               Message Host
             </Link>
           </div>

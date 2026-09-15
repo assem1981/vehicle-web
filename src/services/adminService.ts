@@ -309,5 +309,17 @@ export const adminService = {
 
   rejectHostApplication: async (userId: number): Promise<void> => {
     await api.post(`/api/admin/host-applications/${userId}/reject`);
+  },
+
+  getAllBookings: async () => {
+    const response = await api.get('/api/bookings/admin/all').catch(() => api.get('/api/bookings/host/me'));
+    return Array.isArray(response.data) ? response.data : [];
+  },
+
+  updateBookingStatus: async (bookingId: number, status: string) => {
+    const response = await api.patch(`/api/bookings/${bookingId}/status`, null, {
+      params: { status }
+    });
+    return response.data;
   }
 };

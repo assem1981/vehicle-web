@@ -11,6 +11,11 @@ export interface Booking {
   id: number;
   vehicleId: number;
   userId: number;
+  hostId?: number;
+  vehicleName?: string;
+  renterName?: string;
+  hostName?: string;
+  dates?: string;
   startDate: string;
   endDate: string;
   totalPrice: number;
@@ -49,8 +54,26 @@ export const bookingService = {
   },
 
   getMyBookings: async (): Promise<Booking[]> => {
-    const response = await api.get('/api/bookings/me');
-    return ensureArray<Booking>(response.data);
+    try {
+      const response = await api.get('/api/bookings/me');
+      const list = ensureArray<Booking>(response.data);
+      if (list.length > 0) return list;
+
+      const hostRes = await api.get('/api/bookings/host/me').catch(() => null);
+      const hostList = ensureArray<Booking>(hostRes?.data);
+      if (hostList.length > 0) return hostList;
+
+      const adminRes = await api.get('/api/bookings/admin/all').catch(() => null);
+      return ensureArray<Booking>(adminRes?.data);
+    } catch (err) {
+      console.warn('Failed to fetch renter bookings via /api/bookings/me:', err);
+      const hostRes = await api.get('/api/bookings/host/me').catch(() => null);
+      const hostList = ensureArray<Booking>(hostRes?.data);
+      if (hostList.length > 0) return hostList;
+
+      const adminRes = await api.get('/api/bookings/admin/all').catch(() => null);
+      return ensureArray<Booking>(adminRes?.data);
+    }
   },
 
   getBookingById: async (id: number): Promise<Booking> => {

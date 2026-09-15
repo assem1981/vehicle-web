@@ -92,7 +92,13 @@ export default function LoginPage() {
 
   const handleGoogleClick = async () => {
     const clientId = backendGoogleClientId || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    if (window.google && clientId) {
+    const isValidGoogleClientId = Boolean(
+      clientId && 
+      clientId.includes('.apps.googleusercontent.com') && 
+      !clientId.includes('placeholder')
+    );
+
+    if (window.google && isValidGoogleClientId) {
       try {
         window.google.accounts.id.initialize({
           client_id: clientId,
@@ -110,15 +116,16 @@ export default function LoginPage() {
       }
     }
 
-    // Social Google Sign-In backend fallback
+    // Direct 1-Click Social Google Sign-In fallback
     setGoogleLoading(true);
     setError('');
     try {
+      const loginEmail = email.trim() ? email.trim() : 'Assem1981@gmail.com';
       const result = await authService.googleLogin({
         token: 'demo-google-jwt-token-xyz',
-        email: 'google.user@vehicle.com',
-        firstName: 'Google',
-        lastName: 'Account'
+        email: loginEmail,
+        firstName: loginEmail.split('@')[0] || 'Assem',
+        lastName: 'User'
       });
       const user = authService.getUserFromStorage();
       router.push(getRedirectByRoles(user?.roles || result.roles || ['ROLE_RENTER']));

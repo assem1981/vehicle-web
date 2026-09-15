@@ -304,7 +304,7 @@ export default function AvailabilityCalendarPage() {
                 key={cell.id}
                 type="button"
                 disabled={cell.isPast || cell.isReserved}
-                onClick={() => handleDayClick(cell.dateStr, cell.isPast, cell.isReserved)}
+                onClick={() => cell.dateStr && handleDayClick(cell.dateStr, !!cell.isPast, !!cell.isReserved)}
                 className={`min-h-[54px] sm:min-h-[64px] p-1.5 rounded-xl border flex flex-col items-center justify-between transition-all duration-150 relative ${styleClasses}`}
               >
                 <span className="text-xs font-bold">{cell.dayNum}</span>
