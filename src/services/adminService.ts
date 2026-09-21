@@ -66,6 +66,7 @@ export interface AdminVehicleListing {
   make: string;
   model: string;
   year: number;
+  category: string;
   hostName: string;
   dailyRate: number;
   locationCity: string;
