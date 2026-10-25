@@ -27,10 +27,10 @@ ENV NEXT_PUBLIC_APPLE_CLIENT_ID=$NEXT_PUBLIC_APPLE_CLIENT_ID
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 
-RUN npm run build
+RUN npm install --include=dev && npm run build
 
 # ==============================================================================
 # Stage 3: Production Lightweight Node Runner
