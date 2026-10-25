@@ -1,8 +1,7 @@
 # ==============================================================================
 # Stage 1: Install Dependencies
 # ==============================================================================
-FROM node:22-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:22-slim AS deps
 WORKDIR /app
 
 COPY package.json package-lock.json ./
@@ -11,7 +10,7 @@ RUN npm ci --include=dev
 # ==============================================================================
 # Stage 2: Build Next.js Web Frontend Application
 # ==============================================================================
-FROM node:22-alpine AS builder
+FROM node:22-slim AS builder
 WORKDIR /app
 
 # NEXT_PUBLIC_* vars are baked into the bundle at build time
@@ -35,7 +34,7 @@ RUN npm run build
 # ==============================================================================
 # Stage 3: Production Lightweight Node Runner
 # ==============================================================================
-FROM node:22-alpine AS runner
+FROM node:22-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -46,7 +45,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy assets and standalone output build files
+# Copy assets and build output files
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/node_modules ./node_modules
