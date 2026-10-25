@@ -3,10 +3,12 @@
 # ==============================================================================
 FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
+# Upgrade npm — 10.8.2 bundled with node:20-alpine crashes on Alpine
+RUN npm install -g npm@latest
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --include=dev
 
 # ==============================================================================
 # Stage 2: Build Next.js Web Frontend Application
@@ -30,7 +32,7 @@ ENV NODE_ENV=production
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
-RUN npm install --include=dev && npm run build
+RUN npm run build
 
 # ==============================================================================
 # Stage 3: Production Lightweight Node Runner
