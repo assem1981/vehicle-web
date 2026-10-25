@@ -168,8 +168,23 @@ export default function LoginPage() {
       document.body.appendChild(script);
     };
 
-    // Load Apple Sign-In script
+    // Load Apple Sign-In script — only when a client ID is configured
+    const appleClientId = process.env.NEXT_PUBLIC_APPLE_CLIENT_ID;
+
+    const initializeAppleSignIn = () => {
+      if (window.AppleID && appleClientId) {
+        window.AppleID.auth.init({
+          clientId: appleClientId,
+          scope: 'name email',
+          redirectURI: window.location.origin,
+          state: 'state123',
+          usePopup: true,
+        });
+      }
+    };
+
     const loadAppleScript = () => {
+      if (!appleClientId) return;
       if (document.querySelector('script[src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"]')) return;
       const script = document.createElement('script');
       script.src = 'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js';
@@ -177,18 +192,6 @@ export default function LoginPage() {
       script.defer = true;
       script.onload = initializeAppleSignIn;
       document.body.appendChild(script);
-    };
-
-    const initializeAppleSignIn = () => {
-      if (window.AppleID) {
-        window.AppleID.auth.init({
-          clientId: process.env.NEXT_PUBLIC_APPLE_CLIENT_ID,
-          scope: 'name email',
-          redirectURI: window.location.origin,
-          state: 'state123',
-          usePopup: true,
-        });
-      }
     };
 
     loadGoogleScript();
