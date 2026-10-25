@@ -2,15 +2,18 @@
 # Stage 1: Install Dependencies
 # ==============================================================================
 FROM node:22-slim AS deps
+# Upgrade npm — bundled 10.9.x crashes in Docker with "Exit handler never called!"
+RUN npm install -g npm@11
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci --include=dev
+RUN npm ci --include=dev --no-audit --no-fund
 
 # ==============================================================================
 # Stage 2: Build Next.js Web Frontend Application
 # ==============================================================================
 FROM node:22-slim AS builder
+RUN npm install -g npm@11
 WORKDIR /app
 
 # NEXT_PUBLIC_* vars are baked into the bundle at build time
