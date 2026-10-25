@@ -7,6 +7,10 @@ RUN npm install -g npm@11
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+
+# Lockfile resolved URLs point to private Nexus proxy — rewrite to public registry
+# (same tarball path layout, so a host swap is safe)
+RUN sed -i 's|https://registry.npmjs.org|g' package-lock.json
 RUN npm ci --include=dev --no-audit --no-fund
 
 # ==============================================================================
