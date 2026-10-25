@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { basePath } from './basePath';
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080';
 
@@ -33,7 +34,7 @@ api.interceptors.response.use(
       const isAuthPage = currentPath.startsWith('/auth/login') || currentPath.startsWith('/auth/register');
 
       if (!isAuthPage) {
-        window.location.href = `/auth/login?redirect=${encodeURIComponent(currentPath + window.location.search)}`;
+        window.location.href = `${basePath}/auth/login?redirect=${encodeURIComponent(currentPath + window.location.search)}`;
       }
     }
     return Promise.reject(error);

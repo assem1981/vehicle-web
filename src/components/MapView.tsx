@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Navigation, MapPin, ArrowRight, X, Users, Fuel, Gauge, Star, ShieldCheck } from 'lucide-react';
 import { Vehicle } from '@/services/vehicleService';
+import { basePath } from '@/services/basePath';
 
 interface MapViewProps {
   vehicles: Vehicle[];
@@ -128,7 +129,7 @@ export default function MapView({ vehicles }: MapViewProps) {
               <span style="font-size: 17px; font-weight: 900; color: #F5B301;">$${car.dailyRate}</span>
               <span style="font-size: 10px; color: #94a3b8; font-weight: 500;">/day</span>
             </div>
-            <a href="/vehicles/${car.id}" style="background: linear-gradient(135deg, #F5B301, #D99B00); color: #0B1F35; font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(245,179,1,0.4);">
+            <a href="${basePath}/vehicles/${car.id}" style="background: linear-gradient(135deg, #F5B301, #D99B00); color: #0B1F35; font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(245,179,1,0.4);">
               View Car &rarr;
             </a>
           </div>

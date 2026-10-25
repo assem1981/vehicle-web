@@ -7,10 +7,6 @@ RUN npm install -g npm@11
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-
-# Lockfile resolved URLs point to private Nexus proxy — rewrite to public registry
-# (same tarball path layout, so a host swap is safe)
-RUN sed -i 's|http://nexus-front.tradenet.com:5000|https://registry.npmjs.org|g' package-lock.json
 RUN npm ci --include=dev --no-audit --no-fund
 
 # ==============================================================================
@@ -23,11 +19,13 @@ WORKDIR /app
 # NEXT_PUBLIC_* vars are baked into the bundle at build time
 ARG NEXT_PUBLIC_API_BASE_URL=http://169.58.219.10/vehicle-api
 ARG NEXT_PUBLIC_API_URL=http://169.58.219.10/vehicle-api
+ARG NEXT_PUBLIC_BASE_PATH=/vehicle
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ARG NEXT_PUBLIC_APPLE_CLIENT_ID
 
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH
 ENV NEXT_PUBLIC_GOOGLE_CLIENT_ID=$NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ENV NEXT_PUBLIC_APPLE_CLIENT_ID=$NEXT_PUBLIC_APPLE_CLIENT_ID
 ENV NEXT_TELEMETRY_DISABLED=1

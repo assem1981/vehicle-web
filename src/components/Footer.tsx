@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck, HelpCircle, PhoneCall, Smartphone } from 'lucide-react';
+import { basePath } from '@/services/basePath';
 import AppStoreBadges from '@/components/AppStoreBadges';
 import SocialLinks from '@/components/SocialLinks';
 
@@ -38,7 +39,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2.5 mb-3">
             <img 
-              src="/vehicle/assets/mymotionlux/app-icons/logo-dark-square.png" 
+              src={`${basePath}/assets/mymotionlux/app-icons/logo-dark-square.png`} 
               alt="MyMotionLux" 
               className="h-8 w-8 rounded-lg" 
             />

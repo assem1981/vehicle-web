@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
+import { basePath } from '@/services/basePath';
 import { 
   Car, 
   Search, 
@@ -138,7 +139,7 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2.5 group">
             <img 
-              src="/vehicle/assets/mymotionlux/app-icons/logo-dark-square.png" 
+              src={`${basePath}/assets/mymotionlux/app-icons/logo-dark-square.png`} 
               alt="MyMotionLux" 
               className="h-9 w-9 rounded-lg shadow-lg shadow-[#F5B301]/10 group-hover:scale-105 transition-transform" 
             />
