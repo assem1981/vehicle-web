@@ -45,7 +45,7 @@ export default function HomePage() {
         {/* Background Image Hero Banner */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/assets/mymotionlux/banners/hero-desktop-1920x845.jpg" 
+            src="/vehicle/assets/mymotionlux/banners/hero-desktop-1920x845.jpg" 
             alt="MyMotionLux Hero" 
             className="w-full h-full object-cover object-center opacity-40 filter contrast-125" 
           />
@@ -247,7 +247,7 @@ export default function HomePage() {
               <div className="relative w-full max-w-sm rounded-3xl bg-slate-900/90 border-4 border-slate-800 p-4 shadow-2xl backdrop-blur-md hover:border-[#F5B301]/40 transition-all group">
                 <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
                   <div className="flex items-center gap-2">
-                    <img src="/assets/mymotionlux/app-icons/logo-dark-square.png" alt="Logo" className="w-7 h-7 rounded-md" />
+                    <img src="/vehicle/assets/mymotionlux/app-icons/logo-dark-square.png" alt="Logo" className="w-7 h-7 rounded-md" />
                     <span className="text-xs font-black text-white">MyMotionLux App</span>
                   </div>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
