@@ -17,8 +17,8 @@ RUN npm install -g npm@11
 WORKDIR /app
 
 # NEXT_PUBLIC_* vars are baked into the bundle at build time
-ARG NEXT_PUBLIC_API_BASE_URL=https://vehicle.empower-ops.com/vehicle-api
-ARG NEXT_PUBLIC_API_URL=https://vehicle.empower-ops.com/vehicle-api
+ARG NEXT_PUBLIC_API_BASE_URL=https://vehicle.empower-ops.com/api
+ARG NEXT_PUBLIC_API_URL=https://vehicle.empower-ops.com/api
 ARG NEXT_PUBLIC_BASE_PATH=
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ARG NEXT_PUBLIC_APPLE_CLIENT_ID
